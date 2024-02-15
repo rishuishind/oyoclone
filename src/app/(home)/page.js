@@ -3,6 +3,7 @@ import Header2 from "@/components/Header2";
 import Header3 from "@/components/Header3";
 import Image from 'next/image'
 import Head from 'next/head'
+import Header4 from "@/components/Header4";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <div className="mb-14">
           <Image src="/banner2.avif" alt="banner2" width={200} height={200} className=" w-full" />
         </div>
+        <Header4 />
       </div>
     </div>
   );
