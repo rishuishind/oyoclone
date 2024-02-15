@@ -4,7 +4,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Oyo Clone",
+  title: "OYO: India's Best Online Hotel Booking Site For Sanatized Stay.",
   description: "Website for Oyo hotels",
 };
 
