@@ -4,6 +4,7 @@ import Header3 from "@/components/Header3";
 import Image from 'next/image'
 import Head from 'next/head'
 import Header4 from "@/components/Header4";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         </div>
         <Header4 />
       </div>
+      <Footer />
     </div>
   );
 }
