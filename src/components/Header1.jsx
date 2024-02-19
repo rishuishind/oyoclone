@@ -5,7 +5,9 @@ import Link from 'next/link'
 const Header1 = () => {
     return (
         <div className='flex h-24 px-10 justify-between border-b-2 items-center'>
-            <Image src="/logo.png" alt="oyo_logo" width={200} height={200} className='h-28 w-28' />
+            <Link href='/'>
+                <Image src="/logo.png" alt="oyo_logo" width={200} height={200} className='h-28 w-28' />
+            </Link>
             <div className=' flex h-full'>
                 <Block title='Become a member' para='Additional 10% off on stays' />
                 <Block title='OYO for business' para='Trusted by 5000 corporates' />
