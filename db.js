@@ -4,7 +4,10 @@ const URI = 'mongodb+srv://hespnod:saras123@project.nv0p6ju.mongodb.net/OYO';
 
 const connectDB = async ()=>{
     try{
-        await mongoose.connect(URI);
+        await mongoose.connect(URI,{
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+          });
         console.log('DB connected...');
     }catch(err){
         console.log("Error connecting to MongoDB",err);

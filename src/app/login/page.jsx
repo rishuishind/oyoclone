@@ -1,7 +1,29 @@
 'use client';
-import React from "react"
+import axios from "axios";
+import Cookies from "js-cookie";
+import React, { useState } from "react"
 
 const Login = () => {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [login, setLogin] = useState(false);
+    const handleSignUp = async () => {
+        setEmail("");
+        setName("");
+        setPassword("");
+    }
+    const handleLogin = async () => {
+        const res = await axios.post('/api/user/login', {
+            email,
+            password,
+        });
+        if (res?.data) {
+            Cookies.set('user', res.data.token)
+        }
+        setEmail("");
+        setPassword("");
+    }
     return (
         <div>
             <div className="flex h-screen justify-center items-center relative bg-login-background bg-no-repeat bg-cover">
@@ -19,13 +41,13 @@ const Login = () => {
                         <div className="px-10 pt-5">
                             <h3 className="font-bold text-3xl text-gray-800">Login / Signup</h3>
                             <p className="font-semibold">Please enter your email to continue</p>
-                            <input type="text" placeholder="enter your name" className=" outline-none border border-black my-3 px-5 py-1 w-96 h-10 rounded-sm" />
-                            <input type="email" placeholder="enter your email" className=" outline-none border border-black my-3 px-5 py-1 w-96 h-10 rounded-sm" />
-                            <input type="password" placeholder="enter your password" className=" outline-none border border-black my-3 px-5 py-1 w-96 h-10 rounded-sm" />
-                            <button type="submit" className=" w-96 h-10 bg-red-500 rounded-lg my-5 text-white text-lg font-bold hover:bg-red-800">Signup</button>
+                            {!login && <input value={name} onChange={e => setName(e.target.value)} type="text" placeholder="enter your name" className=" outline-none border border-black my-3 px-5 py-1 w-96 h-10 rounded-sm" />}
+                            <input value={email} onChange={e => setEmail(e.target.value)} type="email" placeholder="enter your email" className=" outline-none border border-black my-3 px-5 py-1 w-96 h-10 rounded-sm" />
+                            <input value={password} onChange={e => setPassword(e.target.value)} type="password" placeholder="enter your password" className=" outline-none border border-black my-3 px-5 py-1 w-96 h-10 rounded-sm" />
+                            <button type="submit" onClick={login ? handleLogin : handleSignUp} className=" w-96 h-10 bg-red-500 rounded-lg my-5 text-white text-lg font-bold hover:bg-red-800">{`${login ? 'Login' : 'Signup'}`}</button>
                             <p className="my-1 text-xl">
-                                <span className="font-semibold">Already have an account ? </span>
-                                <span className=" text-red-500 font-bold border-b-2 border-red-500 hover:cursor-pointer">Login</span>
+                                <span className="font-semibold">{`${!login ? 'Already have an account ?' : 'New to OYO?'}`} </span>
+                                <span onClick={() => setLogin(!login)} className=" text-red-500 font-bold border-b-2 border-red-500 hover:cursor-pointer">{`${!login ? 'Login' : 'Signup'}`}</span>
                             </p>
                         </div>
                         <div className="px-10 flex flex-col absolute bottom-5">
