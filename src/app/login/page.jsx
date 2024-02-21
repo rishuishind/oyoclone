@@ -1,6 +1,7 @@
 'use client';
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react"
 
 const Login = () => {
@@ -8,7 +9,19 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [login, setLogin] = useState(false);
+
+    const router = useRouter();
+
     const handleSignUp = async () => {
+        const res = await axios.post('/api/user/register', {
+            name,
+            email,
+            password,
+        });
+        if (res?.data) {
+            Cookies.set('user', res.data.token)
+            router.push('/')
+        }
         setEmail("");
         setName("");
         setPassword("");
@@ -20,6 +33,7 @@ const Login = () => {
         });
         if (res?.data) {
             Cookies.set('user', res.data.token)
+            router.push('/')
         }
         setEmail("");
         setPassword("");

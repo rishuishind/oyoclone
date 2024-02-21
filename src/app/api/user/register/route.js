@@ -7,7 +7,7 @@ export async function GET(){
     await connectDB();
     return new Response("Hey I'm connected to my DB");
 }
-export async function POST(request,response){
+export async function POST(request){
     await connectDB();
     const {name,email,password} = await request.json();
     if(!name || !email || !password){
