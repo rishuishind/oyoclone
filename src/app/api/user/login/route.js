@@ -16,7 +16,7 @@ export async function POST(req){
     if(emailExist){
         const passwordMatched = await bcrypt.compare(password,emailExist.password);
         if(passwordMatched){
-            const token = jwt.sign({token:emailExist._id},'Code_RS',{expiresIn:'30d'});
+            const token = jwt.sign({token:emailExist._id},process.env.JWT_SECRET,{expiresIn:'30d'});
             return new Response(JSON.stringify({msg:'Logged in succesfully',token}),{
                 headers:{
                     'Content-Type':'application/json'

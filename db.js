@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const URI = 'mongodb+srv://hespnod:saras123@project.nv0p6ju.mongodb.net/OYO';
+const URI = process.env.MONGO_URI;
 
 const connectDB = async ()=>{
     try{

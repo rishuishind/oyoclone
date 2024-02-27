@@ -19,8 +19,8 @@ const Login = () => {
             password,
         });
         if (res?.data) {
-            Cookies.set('user', res.data.token)
-            router.push('/')
+            Cookies.set('user', res.data.token, { expires: 7 })
+            router.back();
         }
         setEmail("");
         setName("");
@@ -32,8 +32,8 @@ const Login = () => {
             password,
         });
         if (res?.data) {
-            Cookies.set('user', res.data.token)
-            router.push('/')
+            Cookies.set('user', res.data.token, { expires: 7 })
+            router.back();
         }
         setEmail("");
         setPassword("");
